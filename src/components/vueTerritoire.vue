@@ -9,7 +9,7 @@
         <div class="map_container">
           <div class="map_title">Location des services sur le territoire</div>
           <!-- <SymbolMap /> -->
-        <div class="map_legend">Géolocalisation des services</div>
+        <div class="map_legend">Géolocalisation des services</div> 
         </div>
 
         <div class="map_container">
