@@ -143,8 +143,8 @@
 
 <script>
 //import { mapState } from 'vuex'
-import francePopulation from '../../public/data/population.json'
-import bassins from '../../public/data/bassins.json'
+import francePopulation from '../../src/data/population.json'
+import bassins from '../../src/data/bassins.json'
 
 export default {
   name: 'GeoFilters',

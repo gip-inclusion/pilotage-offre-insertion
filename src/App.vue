@@ -24,6 +24,7 @@
         <div class="page_btn" @click="(page='zoom')" :class="page=='ensemble'?'':'active'">Données</div>
       </div>
 
+      <vueTerritoire v-if="page=='ensemble'" class="datavue"></vueTerritoire>
       <vueTableau v-if="page=='zoom'&&dataImport" class="datavue"></vueTableau>
 
     </div>
@@ -36,15 +37,16 @@
 import { getData } from './import.js'
 import GeoFilters from './components/GeoFilters.vue'
 import VueTableau from './components/vueTableau.vue'
-
+import VueTerritoire from './components/vueTerritoire.vue'
 export default {
   components: {
     GeoFilters,
-    VueTableau
+    VueTableau,
+    VueTerritoire
   },
   data() {
     return {
-      "page":"zoom"
+      "page":"ensemble"
     }
   },
 

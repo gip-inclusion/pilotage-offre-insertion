@@ -6,7 +6,7 @@
   import store from '@/store'
   import L from 'leaflet'
   import 'leaflet/dist/leaflet.css'
-  import population from '../../public/data/population.json'
+  import population from '../../src/data/population.json'
 
   export default {
     name: 'ColorMap',

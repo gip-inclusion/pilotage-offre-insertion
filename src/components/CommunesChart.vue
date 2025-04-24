@@ -7,7 +7,6 @@
       <div v-if="selectedBassin" class="filter_rappel">{{selectedBassin}}</div>
       <div v-if="!selectedThematique" class="filter_rappel">Toutes les thématiques</div>
       <div v-if="selectedThematique" class="filter_rappel">{{formatThemeName(selectedThematique)}}</div>
-
       <div class="average_text">{{ selectedBassin ? "Dans ce bassin, chaque commune est couverte" : "Dans ce département, les bassins ont des communes couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(1).toLocaleString()+"&nbsp;services" : "moins de 1&nbsp;service" }}</span> pour 100 demandeurs d'emploi en moyenne <span v-if="selectedThematique">pour cette thématique</span></div>
       <div class="top_text" v-if="positiveCount > 0"><span class="highlight">{{ positiveText }}</span> de services que la moyenne</div>
       <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{ negativeText }}</span> de services que la moyenne</div>
@@ -30,10 +29,8 @@
 /* eslint-disable no-unused-vars */
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
 import { Bar } from 'vue-chartjs'
-import store from '@/store'
-import population from '../../public/data/population.json'
-import bassins from '../../public/data/bassins.json'
-import { mapState } from 'vuex'
+import population from '../../src/data/population.json'
+import bassins from '../../src/data/bassins.json'
 import annotationPlugin from 'chartjs-plugin-annotation'
 
 // Register Chart.js components
@@ -576,9 +573,17 @@ export default {
   },
   computed: {
     servicesData() {
-      return store.state.servicesData
+      return this.$store.state.servicesData
     },
-    ...mapState(['selectedThematique','selectedBassin', 'selectedDepartement']),
+    selectedThematique() {
+      return this.$store.state.selectedThematique
+    },
+    selectedBassin() {
+      return this.$store.state.selectedBassin
+    },
+    selectedDepartement() {
+      return this.$store.state.selectedDepartement
+    },
     positiveText(){
       if(this.positiveCount == 1){
         return this.selectedBassin ? this.positiveCount + " commune a plus" : this.positiveCount + " bassin a des communes qui ont moins de"
@@ -689,7 +694,7 @@ export default {
         });
 
       }else{
-
+        
         var bassinsToDisplay = Object.keys(bassins[this.selectedDepartement])
 
         const bassinsAverages = bassinsToDisplay.map(bassinName => {

@@ -6,7 +6,7 @@
 import store from '@/store'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import bassins from '../../public/data/bassins.json'
+import bassins from '../../src/data/bassins.json'
 
 export default {
   name: 'SymbolMap',

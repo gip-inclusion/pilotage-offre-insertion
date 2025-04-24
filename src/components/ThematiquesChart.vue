@@ -24,13 +24,11 @@
   </template>
   
   <script>
-  /* eslint-disable no-unused-vars */
+  
   import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
   import { Bar } from 'vue-chartjs'
-  import store from '@/store'
-  import population from '../../public/data/population.json'
-  import bassins from '../../public/data/bassins.json'
-  import { mapState } from 'vuex'
+  import population from '../../src/data/population.json'
+  import bassins from '../../src/data/bassins.json'
   import annotationPlugin from 'chartjs-plugin-annotation'
   
   // Register Chart.js components
@@ -555,9 +553,14 @@
     },
     computed: {
       servicesData() {
-        return store.state.servicesData
+        return this.$store.state.servicesData
       },
-      ...mapState(['selectedBassin','selectedDepartement']),
+      selectedBassin() {
+        return this.$store.state.selectedBassin
+      },
+      selectedDepartement() {
+        return this.$store.state.selectedDepartement
+      },
       positiveText(){
         if(this.positiveCount == 1){
           return this.positiveCount + " thématique a plus"

@@ -118,7 +118,7 @@
 
 <script>
 
-import francePopulation from '../../public/data/population.json'
+import francePopulation from '../../src/data/population.json'
 
 export default {
   name: 'VueTableau',
