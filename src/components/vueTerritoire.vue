@@ -8,13 +8,13 @@
 
         <div class="map_container">
           <div class="map_title">Location des services sur le territoire</div>
-          <!-- <SymbolMap /> -->
+            <SymbolMap />
         <div class="map_legend">Géolocalisation des services</div> 
         </div>
 
         <div class="map_container">
           <div class="map_title">Répartition de l'offre par densité de population</div>
-          <!-- <ColorMap /> -->
+            <ColorMap />
           <div class="map_legend">Services pour 100 demandeurs d'emploi par commune</div>
         </div>
 
@@ -53,16 +53,16 @@
 </template>
 
 <script>
-//import SymbolMap from './SymbolMap.vue'
-//import ColorMap from './ColorMap.vue'
+import SymbolMap from './SymbolMap.vue'
+import ColorMap from './ColorMap.vue'
 import CommunesChart from './CommunesChart.vue'
 import ThematiquesChart from './ThematiquesChart.vue'
 
 export default {
   name: 'VueTerritoire',
   components: {
-    //SymbolMap,
-    //ColorMap,
+    SymbolMap,
+    ColorMap,
     CommunesChart,
     ThematiquesChart
   },

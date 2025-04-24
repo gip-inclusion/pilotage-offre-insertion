@@ -3,7 +3,7 @@
   </template>
   
   <script>
-  import store from '@/store'
+  
   import L from 'leaflet'
   import 'leaflet/dist/leaflet.css'
   import population from '../../src/data/population.json'
@@ -23,16 +23,16 @@
     },
     computed: {
       servicesData() {
-        return store.state.servicesData
+        return this.$store.state.servicesData
       },
       selectedThematique() {
-        return store.state.selectedThematique
+        return this.$store.state.selectedThematique
       },
       selectedZoomAndCenter() {
-        return store.state.selectedZoomAndCenter
+        return this.$store.state.selectedZoomAndCenter
       },
       selectedDepartement() {
-        return store.state.selectedDepartement
+        return this.$store.state.selectedDepartement
       }
     },
     methods: {
