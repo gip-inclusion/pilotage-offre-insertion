@@ -7,7 +7,7 @@
       <div id="maps_wrapper">
 
         <div class="map_container">
-          <div class="map_title">Location des services sur le territoire</div>
+          <div class="map_title">Localisation des services sur le territoire</div>
             <SymbolMap />
         <div class="map_legend">Géolocalisation des services</div> 
         </div>
