@@ -495,7 +495,7 @@
               "Nom": "Île de Clipperton"
           }
         ],
-        thematiques: ["famille","numerique","remobilisation","accompagnement-social-et-professionnel-personnalise","sante","acces-aux-droits-et-citoyennete","handicap","se-former","mobilite","preparer-sa-candidature","logement-hebergement","creation-activite","trouver-un-emploi","gestion-financiere","choisir-un-metier","equipement-et-alimentation","illettrisme","souvrir-a-linternational","apprendre-francais"],
+        thematiques: ["choisir-un-metier","creer-une-entreprise","difficultes-administratives-ou-juridiques","difficultes-financieres","equipement-et-alimentation","famille","lecture-ecriture-calcul","logement-hebergement","mobilite","numerique","preparer-sa-candidature","remobilisation","sante","se-former","souvrir-a-linternational","trouver-un-emploi"],
         chartConfig: {
           type: 'bar',
           data: {
@@ -586,25 +586,22 @@
     methods: {
       formatThemeName(theme) {
         const accentsMap = {
-          "famille": "Famille",
-          "numerique": "Numérique",
-          "remobilisation": "Remobilisation",
-          "accompagnement-social-et-professionnel-personnalise": "Accompagnement social et professionnel personnalisé",
-          "sante": "Santé",
-          "acces-aux-droits-et-citoyennete": "Accès aux droits et citoyenneté",
-          "handicap": "Handicap",
-          "se-former": "Se former",
-          "mobilite": "Mobilité",
-          "preparer-sa-candidature": "Préparer sa candidature",
-          "logement-hebergement": "Logement et hébergement",
-          "creation-activite": "Création d'activité",
-          "trouver-un-emploi": "Trouver un emploi",
-          "gestion-financiere": "Gestion financière",
-          "choisir-un-metier": "Choisir un métier",
-          "equipement-et-alimentation": "Equipement et alimentation",
-          "illettrisme": "Illetrisme",
-          "souvrir-a-linternational": "S'ouvrir à l'international",
-          "apprendre-francais": "Apprendre le français"
+         "choisir-un-metier":"Choisir un métier",
+        "creer-une-entreprise":"Créer une entreprise",
+        "difficultes-administratives-ou-juridiques":"Difficultés administratives ou juridiques",
+        "difficultes-financieres":"Difficultés financières",
+        "equipement-et-alimentation":"Equipement et alimentation",
+        "famille":"Famille",
+        "lecture-ecriture-calcul":"Lecture écriture calcul",
+        "logement-hebergement":"Logement et hébergement",
+        "mobilite":"Mobilité",
+        "numerique":"Numérique",
+        "preparer-sa-candidature":"Préparer sa candidature",
+        "remobilisation":"Remobilisation",
+        "sante":"Santé",     
+        "se-former":"Se former",
+        "souvrir-a-linternational":"S'ouvrir à l'international",
+        "trouver-un-emploi":"Trouver un emploi"
         };
         return accentsMap[theme] || theme;
       },

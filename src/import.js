@@ -3,7 +3,7 @@ export const getData = async function (store,param) {
 	
 	const servicesOptions = {
 		method: 'GET',
-		url: 'https://pilotage.inclusion.beta.gouv.fr/api/dataset/di_services?department='+store.state.selectedDepartement,
+		url: 'https://pilotage.inclusion.beta.gouv.fr/api/dataset/di_services_v1?department='+store.state.selectedDepartement,
 		headers: {
 			'Content-Type': 'application/json'
 		}
@@ -17,7 +17,7 @@ export const getData = async function (store,param) {
 	
 	const structuresOptions = {
 		method: 'GET',
-		url: 'https://pilotage.inclusion.beta.gouv.fr/api/dataset/di_structures?department='+store.state.selectedDepartement,
+		url: 'https://pilotage.inclusion.beta.gouv.fr/api/dataset/di_structures_v1?department='+store.state.selectedDepartement,
 		headers: {
 			'Content-Type': 'application/json'
 		}
@@ -29,7 +29,6 @@ export const getData = async function (store,param) {
 	} catch (error) {
 		console.error(error);
 	}
-    
     store.commit("endImport",true)
 
 	return true

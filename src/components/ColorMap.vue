@@ -74,7 +74,11 @@
 
         // Define min and max values for the scale
         const minCount = 0;
-        const maxCount = Math.max(...Object.values(this.communeCounts), 5);  // Use actual maximum, with 150 as minimum max
+        var max = Math.max(...Object.values(this.communeCounts), 5);  // Use actual maximum, with 150 as minimum max
+        var maxCount
+        
+        // Seuil abaissé pour les dom-tom
+        this.selectedDepartement.length === 3 ? maxCount = 2.5 : maxCount = max;
         
         // Ensure count is within bounds
         count = Math.min(Math.max(count, minCount), maxCount);
@@ -105,6 +109,7 @@
       },
   
       updateChoropleth() {
+        
         if (this.geojsonLayer) {
           this.geojsonLayer.remove()
         }
@@ -115,7 +120,7 @@
         this.servicesData.forEach(service => {
           const thematiques = Array.isArray(service.Thematiques) ? service.Thematiques : [service.Thematiques];
           // Only count service if it matches the selected thematique or if no thematique is selected
-          if(service.Source != 'fredo'){
+          if(service.Thematiques){
             if (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique))) {
               const inseeCode = service['Code Insee']
               if (inseeCode) {

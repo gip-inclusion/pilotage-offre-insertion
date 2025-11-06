@@ -35,7 +35,7 @@
               <th>Commune</th>
               <!-- <th>ADRESSE</th> -->
               <th>Nombre de services</th>
-              <th>Typologie</th>
+              <th>Réseaux porteurs</th>
             </tr>
           </thead>
           <tbody>
@@ -44,7 +44,7 @@
               <td>{{ structure.Commune }}</td>
               <!-- <td>{{ structure.Adresse }}</td> -->
               <td>{{ countServicesForStructure(structure.ID) }}</td>
-              <td>{{ structure.Typologie }}</td>
+              <td>{{ formatTexts(structure["Reseaux Porteurs"]) }}</td>
             </tr>
           </tbody>
         </table>
@@ -78,7 +78,7 @@
             <th>Nom du service</th>
             <th>Nom de la structure</th>
             <th>Thématiques</th>
-            <th>Profils visés</th>
+            <th>Publics</th>
             <th>Frais</th>
             <th>Accueil</th>
           </tr>
@@ -88,9 +88,9 @@
             <td>{{ service.Nom }}</td>
             <td>{{ getStructureName(service['Structure ID']) }}</td>
             <td>{{ formatThematiques(service.Thematiques) }}</td>
-            <td>{{ formatProfils(service.Profils) }}</td>
-            <td>{{ formatProfils(service.Frais) }}</td>
-            <td>{{ formatProfils(service["Modes Accueil"]) }}</td>
+            <td>{{ formatTexts(service.Publics) }}</td>
+            <td>{{ formatTexts(service.Frais) }}</td>
+            <td>{{ formatTexts(service["Modes Accueil"]) }}</td>
           </tr>
         </tbody>
       </table>
@@ -130,11 +130,12 @@ export default {
       currentPage: 1,
       structuresCurrentPage: 1,
       itemsPerPage: 5,
-      thematiques: ["famille","numerique","remobilisation","accompagnement-social-et-professionnel-personnalise","sante","acces-aux-droits-et-citoyennete","handicap","se-former","mobilite","preparer-sa-candidature","logement-hebergement","creation-activite","trouver-un-emploi","gestion-financiere","choisir-un-metier","equipement-et-alimentation","illettrisme","souvrir-a-linternational","apprendre-francais"],
+      thematiques: ["choisir-un-metier","creer-une-entreprise","difficultes-administratives-ou-juridiques","difficultes-financieres","equipement-et-alimentation","famille","lecture-ecriture-calcul","logement-hebergement","mobilite","numerique","preparer-sa-candidature","remobilisation","sante","se-former","souvrir-a-linternational","trouver-un-emploi"],
     }
   },
   computed: {
     servicesData() {
+      console.log(this.$store.state.servicesData);
       return this.$store.state.servicesData
     },
     structuresData() {
@@ -161,8 +162,11 @@ export default {
       }
       if (this.selectedThematique) {
         communesFiltredServices = communesFiltredServices.filter(service => {
+          if(service.Thematiques){
           const thematiques = Array.isArray(service.Thematiques) ? service.Thematiques : [service.Thematiques];
-          return thematiques.some(t => t.includes(this.selectedThematique));
+            return thematiques.some(t => t.includes(this.selectedThematique));
+          }
+          return false;
         });
       }
       return communesFiltredServices;
@@ -235,31 +239,28 @@ export default {
 
     formatThemeName(theme) {
         const accentsMap = {
-            "famille": "Famille",
-            "numerique": "Numérique",
-            "remobilisation": "Remobilisation",
-            "accompagnement-social-et-professionnel-personnalise": "Accompagnement social et professionnel personnalisé",
-            "sante": "Santé",
-            "acces-aux-droits-et-citoyennete": "Accès aux droits et citoyenneté",
-            "handicap": "Handicap",
-            "se-former": "Se former",
-            "mobilite": "Mobilité",
-            "preparer-sa-candidature": "Préparer sa candidature",
-            "logement-hebergement": "Logement et hébergement",
-            "creation-activite": "Création d'activité",
-            "trouver-un-emploi": "Trouver un emploi",
-            "gestion-financiere": "Gestion financière",
-            "choisir-un-metier": "Choisir un métier",
-            "equipement-et-alimentation": "Equipement et alimentation",
-            "illettrisme": "Illetrisme",
-            "souvrir-a-linternational": "S'ouvrir à l'international",
-            "apprendre-francais": "Apprendre le français"
+          "choisir-un-metier":"Choisir un métier",
+        "creer-une-entreprise":"Créer une entreprise",
+        "difficultes-administratives-ou-juridiques":"Difficultés administratives ou juridiques",
+        "difficultes-financieres":"Difficultés financières",
+        "equipement-et-alimentation":"Equipement et alimentation",
+        "famille":"Famille",
+        "lecture-ecriture-calcul":"Lecture écriture calcul",
+        "logement-hebergement":"Logement et hébergement",
+        "mobilite":"Mobilité",
+        "numerique":"Numérique",
+        "preparer-sa-candidature":"Préparer sa candidature",
+        "remobilisation":"Remobilisation",
+        "sante":"Santé",     
+        "se-former":"Se former",
+        "souvrir-a-linternational":"S'ouvrir à l'international",
+        "trouver-un-emploi":"Trouver un emploi"
         };
         
         return accentsMap[theme] || theme;
       },
 
-    formatProfils(profilsString) {
+    formatTexts(profilsString) {
       if (!profilsString) return '';
       return profilsString.toString()
         .replace(/[{}]/g, '')
@@ -269,12 +270,16 @@ export default {
           .replace(/Salaries/g, 'Salariés')
           .replace(/en-/g, '')
           .replace(/a-/g, '')
+          .replace(/-/g, ' ')
+          .replace(/durgence/g, 'd\'urgence')
           .charAt(0).toUpperCase() + 
           word.trim()
             .replace(/salaries/g, 'salariés')
             .replace(/Salaries/g, 'Salariés')
             .replace(/en-/g, '')
             .replace(/a-/g, '')
+            .replace(/-/g, ' ')
+            .replace(/durgence/g, 'd\'urgence')
             .slice(1))
         .join(', ');
     },
