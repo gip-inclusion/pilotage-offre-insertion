@@ -611,7 +611,7 @@ export default {
           {"nom": "Occitanie", "départements": ["09", "11", "12", "30", "31", "32", "34", "46", "48", "65", "66", "81", "82"]},
           {"nom": "Pays de la Loire", "départements": ["44", "49", "53", "72", "85"]},
           {"nom": "Provence-Alpes-Côte d'Azur", "départements": ["04", "05", "06", "13", "83", "84"]},
-          {"nom": "Régions ultramarines", "départements": ["971", "972", "973", "974", "975", "976"]}
+          {"nom": "Régions ultramarines", "départements": ["971", "972", "973", "974", "976"]}
       ],
       selectedRegion: {"nom": "Auvergne-Rhône-Alpes", "départements": ["01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"]},
       thematiques: ["choisir-un-metier","creer-une-entreprise","difficultes-administratives-ou-juridiques","difficultes-financieres","equipement-et-alimentation","famille","lecture-ecriture-calcul","logement-hebergement","mobilite","numerique","preparer-sa-candidature","remobilisation","sante","se-former","souvrir-a-linternational","trouver-un-emploi"],
